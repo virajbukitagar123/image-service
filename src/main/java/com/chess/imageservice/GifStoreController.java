@@ -4,6 +4,7 @@ import com.chess.imageservice.service.ObjectStoreService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ public class GifStoreController {
         this.objectStoreService = objectStoreService;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{openingName}/{move}")
     public ResponseEntity<Resource> returnGif(@PathVariable String openingName, @PathVariable int move, HttpServletResponse response) throws IOException {
         Optional<File> fileOp = objectStoreService.getGif(openingName, move);
